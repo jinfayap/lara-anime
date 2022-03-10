@@ -14,4 +14,16 @@ class AnimeController extends Controller
 
         return view('anime.index', compact('topAnime'));
     }
+
+    public function show($id)
+    {
+        // dd($id);
+        $anime = Http::get('https://api.jikan.moe/v4/anime/2031')->json();
+        // $anime = Http::get('https://api.jikan.moe/v4/anime/2031/characters')->json();
+        // $anime = Http::get('https://api.jikan.moe/v4/anime/2031/recommendations')->json();
+
+        dump($anime);
+
+        return view('anime.show');
+    }
 }
