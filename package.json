@@ -18,6 +18,7 @@
         "tailwindcss": "^3.0.23"
     },
     "dependencies": {
+        "@tailwindcss/line-clamp": "^0.3.1",
         "laravel-mix-blade-reload": "^3.0.0"
     }
 }

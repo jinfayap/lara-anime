@@ -9,7 +9,8 @@ class AnimeController extends Controller
 {
     public function index()
     {
-        $topAnime = Http::get('https://api.jikan.moe/v4/top/anime')->json();
+        $topAnime = Http::get('https://api.jikan.moe/v4/seasons/now')->json();
+        // dd($topAnime);
 
         return view('anime.index', compact('topAnime'));
     }
