@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Client\Pool;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class AnimeController extends Controller
@@ -40,13 +39,16 @@ class AnimeController extends Controller
 
     public function show($id)
     {
-        // dd($id);
-        $anime = Http::get('https://api.jikan.moe/v4/anime/2031')->json();
-        // $anime = Http::get('https://api.jikan.moe/v4/anime/2031/characters')->json();
-        // $anime = Http::get('https://api.jikan.moe/v4/anime/2031/recommendations')->json();
+        $anime = Http::get("https://api.jikan.moe/v4/anime/{$id}")->json()['data'];
+        $characters = Http::get("https://api.jikan.moe/v4/anime/{$id}/characters")->json()['data'];
+        // $recommendations = Http::get("https://api.jikan.moe/v4/anime/{$id}/recommendations")->json()['data'];
 
-        dump($anime);
+        $animeRecommendations = collect(Http::get("https://api.jikan.moe/v4/anime/{$id}/recommendations")->json()['data'])
+            ->flatMap(function ($anime) {
+                return array($anime['entry']);
+            })
+            ->all();
 
-        return view('anime.show');
+        return view('anime.show', compact('anime', 'characters', 'animeRecommendations'));
     }
 }

@@ -19,7 +19,7 @@
 <body class="h-full bg-gray-800">
 	<div class="min-h-full" id="app">
 
-		@include('layouts.navigation')
+		{{-- @include('layouts.navigation') --}}
 
 		<main>
 			<div class="relative mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
