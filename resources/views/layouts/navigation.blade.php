@@ -1,8 +1,8 @@
-<nav class="flex items-center justify-between border-b-2 border-gray-900 px-4 py-4">
+<nav class="flex flex-col items-center justify-between border-b-2 border-gray-900 px-4 py-4 lg:flex-row">
 
 	<a href="https://docs.api.jikan.moe/" class="font-bold text-white">Jikan Api</a>
 
-	<ul class="flex space-x-4 text-sm font-semibold uppercase text-white">
+	<ul class="flex flex-col space-y-4 text-sm font-semibold uppercase text-white lg:flex-row lg:space-y-0 lg:space-x-4">
 		<li><a href="#">Home</a></li>
 		<li><a href="#">Current</a></li>
 		<li><a href="#">Upcoming</a></li>
@@ -10,7 +10,7 @@
 		<li><a href="#">Archive</a></li>
 	</ul>
 
-	<div class="relative">
+	<div class="relative mt-4 lg:mt-0">
 		<input type="search" name="search" class="rounded bg-gray-700 px-6 py-1 text-sm text-white outline-none"
 			placeholder="Search..." autocomplete="off">
 

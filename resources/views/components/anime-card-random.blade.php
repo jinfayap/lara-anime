@@ -1,4 +1,5 @@
-<div class="flex rounded-md bg-gray-600 px-4 py-2 transition duration-150 ease-in-out hover:opacity-75">
+<div
+	class="flex flex-col rounded-md bg-gray-600 px-4 py-2 transition duration-150 ease-in-out hover:opacity-75 sm:flex-row">
 	<div class="relative mr-6 flex-none">
 		<a href="{{ route('anime.show', $anime['mal_id']) }}">
 			<img src="{{ $anime['images']['jpg']['image_url'] }}" alt="" class="rounded">
@@ -12,6 +13,7 @@
 			</div>
 		@endif
 	</div>
+
 	<div>
 		<a href="{{ route('anime.show', $anime['mal_id']) }}"
 			class="mt-2 block text-xl text-white">{{ $anime['title'] }}</a>
