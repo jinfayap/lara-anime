@@ -3,6 +3,9 @@
 	@forelse ($currentAnime as $anime)
 		<x-anime-card-normal :anime="$anime" />
 	@empty
-		<div>Loading...</div>
+		@foreach (range(1, 12) as $n)
+			<x-skeleton-normal />
+		@endforeach
+
 	@endforelse
 </div>

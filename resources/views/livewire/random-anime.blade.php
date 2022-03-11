@@ -1,5 +1,9 @@
 <div class="space-y-8" wire:init="loadRandomAnime">
-	@foreach ($randomAnime as $anime)
+	@forelse ($randomAnime as $anime)
 		<x-anime-card-random :anime="$anime" />
-	@endforeach
+	@empty
+		@foreach (range(1, 3) as $n)
+			<x-skeleton-random />
+		@endforeach
+	@endforelse
 </div>

@@ -1,4 +1,4 @@
-<div class="anime flex flex-col transition duration-150 ease-in-out hover:opacity-75">
+<div class="flex flex-col transition duration-150 ease-in-out hover:opacity-75">
 	<div class="relative mb-4">
 		<a href="{{ route('anime.show', $anime['mal_id']) }}">
 			<img src="{{ $anime['images']['jpg']['image_url'] }}" alt="" class="h-75 w-full rounded-md object-cover">
@@ -13,9 +13,9 @@
 	<div class="">
 		<div class="flex flex-col items-center justify-between text-xs lg:flex-row">
 			<span
-				class="w-full rounded bg-blue-500 px-2 py-1 text-center font-semibold text-white lg:w-fit lg:text-left">{{ $anime['type'] }}</span>
+				class="w-full rounded bg-blue-500 px-2 py-0.5 text-center font-semibold text-white lg:w-fit lg:text-left">{{ $anime['type'] }}</span>
 			<span
-				class="mt-1 w-full rounded bg-green-400 px-2 py-1 text-center font-semibold text-white lg:mt-0 lg:w-fit lg:text-left">{{ $anime['status'] }}</span>
+				class="mt-1 w-full rounded bg-green-400 px-2 py-0.5 text-center font-semibold text-white lg:mt-0 lg:w-fit lg:text-left">{{ $anime['status'] }}</span>
 		</div>
 
 		<a href="{{ route('anime.show', $anime['mal_id']) }}"

@@ -5,25 +5,11 @@
 
 			<a href="#" class="text-sm font-bold uppercase text-gray-400 hover:underline">View all</a>
 		</div>
-
-		{{-- <div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-			@foreach ($currentAnime as $anime)
-				<x-anime-card-normal :anime="$anime" />
-			@endforeach
-		</div> --}}
 		<livewire:current-anime />
 	</section>
 
 	<section class="mt-12">
 		<h2 class="text-2xl font-bold text-white">Top Anime Series</h2>
-
-		{{-- <div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-
-			@foreach ($topAnime as $anime)
-				<x-anime-card-normal :anime="$anime" />
-			@endforeach
-		</div> --}}
-
 		<livewire:top-anime />
 
 	</section>
