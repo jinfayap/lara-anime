@@ -3,9 +3,10 @@
 		<div class="flex items-center justify-between">
 			<h2 class="text-2xl font-bold text-white">Current Season Anime</h2>
 
-			<a href="#" class="text-sm font-bold uppercase text-gray-400 hover:underline">View all</a>
+			<a href="{{ route('anime.current') }}" class="text-sm font-bold uppercase text-gray-400 hover:underline">View
+				all</a>
 		</div>
-		<livewire:current-anime />
+		<livewire:current-anime limit="12" />
 	</section>
 
 	<section class="mt-12">

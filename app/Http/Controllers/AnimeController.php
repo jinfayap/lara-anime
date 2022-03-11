@@ -22,4 +22,9 @@ class AnimeController extends Controller
 
         return view('anime.show', compact('anime', 'id'));
     }
+
+    public function current()
+    {
+        return view('anime.current');
+    }
 }
