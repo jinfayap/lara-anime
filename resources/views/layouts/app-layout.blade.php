@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+	<livewire:styles />
 
 	<script src="{{ mix('js/app.js') }}"></script>
 
@@ -29,6 +30,8 @@
 			</div>
 		</main>
 	</div>
+
+	<livewire:scripts />
 </body>
 
 </html>

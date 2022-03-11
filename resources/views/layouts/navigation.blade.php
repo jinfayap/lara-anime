@@ -3,7 +3,7 @@
 	<a href="https://docs.api.jikan.moe/" class="font-bold text-white">Jikan Api</a>
 
 	<ul class="flex flex-col space-y-4 text-sm font-semibold uppercase text-white lg:flex-row lg:space-y-0 lg:space-x-4">
-		<li><a href="#">Home</a></li>
+		<li><a href="{{ route('anime.index') }}">Home</a></li>
 		<li><a href="#">Current</a></li>
 		<li><a href="#">Upcoming</a></li>
 		<li><a href="#">Schedule</a></li>
