@@ -14,16 +14,12 @@ class AnimeController extends Controller
 
     public function show($id)
     {
-        $anime = Http::get("https://api.jikan.moe/v4/anime/{$id}")->json()['data'];
-        $characters = Http::get("https://api.jikan.moe/v4/anime/{$id}/characters")->json()['data'];
-        // $recommendations = Http::get("https://api.jikan.moe/v4/anime/{$id}/recommendations")->json()['data'];
+        $anime = Http::get("https://api.jikan.moe/v4/anime/{$id}");
 
-        $animeRecommendations = collect(Http::get("https://api.jikan.moe/v4/anime/{$id}/recommendations")->json()['data'])
-            ->flatMap(function ($anime) {
-                return array($anime['entry']);
-            })
-            ->all();
+        abort_if($anime->failed(), 404);
 
-        return view('anime.show', compact('anime', 'characters', 'animeRecommendations'));
+        $anime = $anime->json()['data'];
+
+        return view('anime.show', compact('anime', 'id'));
     }
 }

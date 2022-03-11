@@ -65,32 +65,12 @@
 	<section class="mt-12">
 		<h2 class="mb-2 text-2xl font-bold text-white">Characters</h2>
 
-		<div class="grid grid-cols-4 gap-4 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10">
-			@foreach ($characters as $character)
-				<div>
-					<img src="{{ $character['character']['images']['jpg']['image_url'] }}" alt="" class="h-32 rounded">
-					<p class="mt-1 text-sm text-gray-400">{{ $character['character']['name'] }}</p>
-				</div>
-			@endforeach
-
-
-		</div>
+		<livewire:anime-characters :animeId="$id" />
 	</section>
 
 	<section class="mt-12">
 		<h2 class="mb-2 text-2xl font-bold text-white">You may also like</h2>
 
-		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-
-			@foreach ($animeRecommendations as $anime)
-				<a href="{{ route('anime.show', $anime['mal_id']) }}">
-					<img src="{{ $anime['images']['jpg']['image_url'] }}" alt="" class="h-75 object-fit w-full md:w-fit">
-					<p class="mt-1 text-gray-400">{{ $anime['title'] }}</p>
-				</a>
-			@endforeach
-
-
-
-		</div>
+		<livewire:anime-recommendations :animeId="$id">
 	</section>
 </x-app-layout>
