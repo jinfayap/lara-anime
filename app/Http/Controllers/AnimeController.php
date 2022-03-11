@@ -27,4 +27,9 @@ class AnimeController extends Controller
     {
         return view('anime.current');
     }
+
+    public function upcoming()
+    {
+        return view('anime.upcoming');
+    }
 }

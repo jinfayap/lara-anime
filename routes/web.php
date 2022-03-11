@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AnimeController::class, 'index'])->name('anime.index');
 Route::get('/anime/current', [AnimeController::class, 'current'])->name('anime.current');
+Route::get('/anime/upcoming', [AnimeController::class, 'upcoming'])->name('anime.upcoming');
 Route::get('/anime/{id}', [AnimeController::class, 'show'])->name('anime.show');
