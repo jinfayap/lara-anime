@@ -25,15 +25,16 @@ class UpcomingAnimeList extends Component
     public function loadUpcomingAnime()
     {
 
-        $animes = Cache::remember('upcoming-anime', now()->addDay(), function () {
+        $animes = Cache::rememberForever('key', function () {
             $animes = array();
             $page = 1;
 
-            // do {
-            $response = Http::get('https://api.jikan.moe/v4/seasons/upcoming?page=' . $page)->json();
-            $page++;
-            array_push($animes, ...$response['data']);
-            // } while ($response['pagination']['has_next_page']);
+            do {
+                $response = Http::get('https://api.jikan.moe/v4/seasons/upcoming?page=' . $page)->json();
+                $page++;
+                array_push($animes, ...$response['data']);
+                sleep(4);
+            } while ($response['pagination']['has_next_page']);
 
             return $animes;
         });
