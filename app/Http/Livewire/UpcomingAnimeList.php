@@ -29,11 +29,11 @@ class UpcomingAnimeList extends Component
             $animes = array();
             $page = 1;
 
-            do {
-                $response = Http::get('https://api.jikan.moe/v4/seasons/upcoming?page=' . $page)->json();
-                $page++;
-                array_push($animes, ...$response['data']);
-            } while ($response['pagination']['has_next_page']);
+            // do {
+            $response = Http::get('https://api.jikan.moe/v4/seasons/upcoming?page=' . $page)->json();
+            $page++;
+            array_push($animes, ...$response['data']);
+            // } while ($response['pagination']['has_next_page']);
 
             return $animes;
         });
