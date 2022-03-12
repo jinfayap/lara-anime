@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 
@@ -12,68 +11,41 @@ class UpcomingAnimeList extends Component
 
     public $upcomingAnime = [];
 
-    public $winter = [];
+    public $page = 1;
 
-    public $spring = [];
+    public $maxPage = 0;
 
-    public $summer = [];
+    public $hasNextPage = false;
 
-    public $fall = [];
-
-    public $chosenSeason = 'winter';
 
     public function loadUpcomingAnime()
     {
+        $response = Http::get('https://api.jikan.moe/v4/seasons/upcoming?page=' . $this->page)->json();
+        $this->hasNextPage = $response['pagination']['has_next_page'];
+        $this->maxPage = $response['pagination']['last_visible_page'];
 
-        $animes = Cache::rememberForever('upcoming-anime', function () {
-            $animes = array();
-            $page = 1;
-
-            do {
-                $response = Http::get('https://api.jikan.moe/v4/seasons/upcoming?page=' . $page)->json();
-                $page++;
-                array_push($animes, ...$response['data']);
-                sleep(1);
-            } while ($response['pagination']['has_next_page']);
-
-            return $animes;
-        });
-
-        $this->winter = collect($animes)->filter(function ($item) {
-            return $item['season'] == 'winter';
-        })->all();
-
-        $this->spring = collect($animes)->filter(function ($item) {
-            return $item['season'] == 'spring';
-        })->all();
-
-        $this->fall = collect($animes)->filter(function ($item) {
-            return $item['season'] == 'fall';
-        })->all();
-
-        $this->summer = collect($animes)->filter(function ($item) {
-            return $item['season'] == 'summer';
-        })->all();
-
-        $this->upcomingAnime = $this->winter;
+        $this->upcomingAnime = $response['data'];
     }
 
-    public function changeSeason($season)
+    public function nextPage()
     {
-        $seasons = [
-            'winter' => $this->winter,
-            'spring' => $this->spring,
-            'summer' => $this->summer,
-            'fall' => $this->fall
-        ];
+        $this->page += 1;
+        $this->loadUpcomingAnime();
+    }
 
-        $this->upcomingAnime = $seasons[$season];
-
-        $this->chosenSeason = $season;
+    public function previousPage()
+    {
+        $this->page -= 1;
+        $this->loadUpcomingAnime();
     }
 
     public function render()
     {
         return view('livewire.upcoming-anime-list');
+    }
+
+    public function hasPrevPage()
+    {
+        return $this->page !== 1;
     }
 }
