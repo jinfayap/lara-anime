@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Http;
 class UpcomingAnimeList extends Component
 {
 
-
     public $upcomingAnime = [];
 
     public $page = 1;
@@ -17,7 +16,7 @@ class UpcomingAnimeList extends Component
 
     public $hasNextPage = false;
 
-    public $queryString = ['page'];
+    protected $queryString = ['page' => ['except' => 1],];
 
 
     public function loadUpcomingAnime()
