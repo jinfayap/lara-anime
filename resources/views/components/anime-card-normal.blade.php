@@ -4,10 +4,13 @@
 			<img src="{{ $anime['images']['jpg']['image_url'] }}" alt="" class="h-75 w-full rounded-md object-cover">
 		</a>
 
-		<div
-			class="absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-full bg-black text-xs font-semibold text-white">
-			{{ $anime['score'] }}
-		</div>
+		@if (isset($anime['score']))
+			<div
+				class="absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-full bg-black text-xs font-semibold text-white">
+				{{ $anime['score'] }}
+			</div>
+		@endif
+
 	</div>
 
 	<div class="">
