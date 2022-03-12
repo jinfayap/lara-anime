@@ -7,7 +7,7 @@
 	@empty
 
 		@foreach (range(1, 6) as $n)
-			<div class="flex flex-col">
+			<div class="flex animate-pulse flex-col">
 				<div class="h-75 w-full rounded bg-gray-400"></div>
 				<p class="mt-1 h-3 w-full rounded bg-gray-400 text-gray-400"></p>
 			</div>

@@ -12,7 +12,7 @@
 
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 	<livewire:styles />
-
+	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	<script src="{{ mix('js/app.js') }}"></script>
 
 </head>

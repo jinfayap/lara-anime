@@ -1,6 +1,12 @@
-<div class="relative mt-4 lg:mt-0">
-	<input wire:model.debounce.300ms="search" type="search" name="search"
-		class="rounded bg-gray-700 px-6 py-1 text-sm text-white outline-none" placeholder="Search..." autocomplete="off">
+<div class="relative mt-4 lg:mt-0" x-data="{isVisible: true}" @click.away="isVisible = false">
+	<input wire:model.debounce.300ms="search" type="search" name="search" @focus="isVisible = true"
+		@keydown.escape.window="isVisible = false" @keydown="isVisible=true" @keydown.shift.tab="isVisible=false"
+		x-ref="search" @keydown.window="
+	if(event.keyCode === 191) {
+												event.preventDefault();
+												$refs.search.focus();
+								}" class="w-72 rounded bg-gray-700 px-6 py-1 text-sm text-white outline-none"
+		placeholder="Search (Press '/' to focus)" autocomplete="off">
 
 	<svg class="absolute top-0 left-0 ml-1 flex h-full w-4 items-center text-white" fill="none" viewBox="0 0 24 24"
 		stroke="currentColor" stroke-width="2">
@@ -16,14 +22,15 @@
 	</svg>
 
 	@if (strlen($search))
-		<div class="absolute z-50 mt-2 w-full rounded bg-gray-600 text-xs text-white">
+		<div x-show="isVisible" x-transition.opacity.duration.200
+			class="absolute z-50 mt-2 w-full rounded bg-gray-600 text-xs text-white">
 			@if (count($searchResults))
 				<ul class="max-h-96 divide-y overflow-y-auto">
-
 					@foreach ($searchResults as $anime)
 						<li>
-							<a href="{{ route('anime.show', $anime['mal_id']) }}"
-								class="flex items-center px-3 py-1 opacity-75 transition ease-out hover:bg-gray-500">
+							<a @if ($loop->last) @keydown.tab="isVisible=false" @endif
+								href="{{ route('anime.show', $anime['mal_id']) }}"
+								class="flex items-center px-3 py-1 opacity-75 transition ease-out hover:bg-gray-500 focus:outline-none focus:ring focus:ring-blue-800">
 								<img src="{{ $anime['images']['jpg']['small_image_url'] }}" alt="" class="w-10">
 								<span class="ml-3">{{ $anime['title'] }}</span>
 							</a>
