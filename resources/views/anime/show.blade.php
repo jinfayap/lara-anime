@@ -1,5 +1,6 @@
 <x-app-layout>
-	<section class="flex flex-col justify-between rounded-md bg-gray-700 px-4 py-4 lg:flex-row">
+	<section class="flex flex-col justify-between rounded-md bg-gray-700 px-4 py-4 lg:flex-row"
+		x-data="{isTrailerModalVisible : false}">
 		<img src="{{ $anime['images']['jpg']['large_image_url'] }}" alt="">
 
 		<div class="mt-2 lg:mt-0 lg:ml-4">
@@ -56,9 +57,33 @@
 				{{ $anime['synopsis'] }}
 			</p>
 
-			<button
+			<button @click="isTrailerModalVisible = true"
 				class="mt-3 w-full rounded-md bg-blue-500 px-4 py-2 text-center font-semibold text-white hover:bg-blue-600 lg:w-52">Trailer
 			</button>
+			<template x-if="isTrailerModalVisible">
+				<div class="fixed top-0 left-0 flex h-full w-full items-center overflow-y-auto shadow-lg">
+					<div class="container mx-auto overflow-y-auto rounded-lg lg:px-32">
+						<div class="rounded bg-gray-900">
+							<div class="flex justify-end pr-4 pt-2">
+								<button @click="isTrailerModalVisible = false" @keydown.escape.window="isTrailerModalVisible=false"
+									class="text-3xl leading-none text-white hover:text-gray-400">&times;</button>
+							</div>
+
+							<div class="modal-body px-8 py-8">
+								<div class="responsive-container relative overflow-hidden" style="padding-top:56.25%">
+
+									<iframe width="560" height="315" class="responsive-iframe absolute top-0 left-0 h-full w-full"
+										src="{{ $anime['trailer']['embed_url'] }}" style="border:0;" allow="autoplay; encrypted-media"
+										allowfullscreen></iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</template>
+
+
+
 		</div>
 	</section>
 
