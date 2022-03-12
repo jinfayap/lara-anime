@@ -17,6 +17,8 @@ class UpcomingAnimeList extends Component
 
     public $hasNextPage = false;
 
+    public $queryString = ['page'];
+
 
     public function loadUpcomingAnime()
     {
