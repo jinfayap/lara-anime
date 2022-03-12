@@ -6,8 +6,6 @@
 		<li><a href="{{ route('anime.index') }}">Home</a></li>
 		<li><a href="{{ route('anime.current') }}">Current</a></li>
 		<li><a href="{{ route('anime.upcoming') }}">Upcoming</a></li>
-		<li><a href="#">Schedule</a></li>
-		<li><a href="#">Archive</a></li>
 	</ul>
 
 	<livewire:search-dropdown />
